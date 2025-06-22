@@ -14,13 +14,13 @@ public class MemberRequestDTO {
     @Schema(name = "MemberJoinDto", description = "회원가입 DTO")
     public static class JoinDto{
         @NotBlank
-        String user_id;
+        String loginId;
 
         @NotBlank
-        String user_pwd;
+        String loginPwd;
 
         @NotNull
-        String phone_num;
+        String phone;
 
         @NotNull
         String nickname;

@@ -30,9 +30,9 @@ public class MemberConverter {
 
     public static Member toMember(MemberRequestDTO.JoinDto request) {
         return Member.builder()
-                .loginId(request.getUser_id())
-                .loginPwd(request.getUser_pwd())
-                .phone(request.getPhone_num())
+                .loginId(request.getLoginId())
+                .loginPwd(request.getLoginPwd())
+                .phone(request.getPhone())
                 .nickname(request.getNickname())
                 .build();
     }

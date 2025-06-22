@@ -29,7 +29,7 @@ public class MemberService {
     @Transactional
     public Member signupMember(MemberRequestDTO.JoinDto request){
         Member newMember = MemberConverter.toMember(request);
-        newMember.encodePassword(passwordEncoder.encode(request.getUser_pwd()));
+        newMember.encodePassword(passwordEncoder.encode(request.getLoginPwd()));
         return memberRepository.save(newMember);
     }
 

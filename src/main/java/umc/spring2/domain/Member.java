@@ -2,6 +2,7 @@ package umc.spring2.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import umc.spring2.domain.common.BaseEntity;
@@ -35,7 +36,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 255)
     private String nickname;
 
-    @Column
+    @ColumnDefault("USER")
     private String role;
 
     // 여행지(Trip)와의 연결 - 양방향 관계로 만들고 싶을 때 사용
