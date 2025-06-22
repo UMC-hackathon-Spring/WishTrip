@@ -9,5 +9,5 @@ import java.util.List;
 public interface TripRecordService {
     TripRecordResponseDTO createTripRecord(TripRecordRequestDTO dto);
 
-    List<TripRecordResponseDTO> getTripRecordsByMember(Long memberId);
+    TripRecordResponseDTO getTripRecordById(Long tripRecordId);
 }
