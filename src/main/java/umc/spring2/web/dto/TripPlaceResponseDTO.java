@@ -4,10 +4,9 @@ import lombok.*;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class TripPlaceResponseDTO {
-    private Long id;
+    private Long tripPlaceId;
     private String country;
     private String city;
     private Boolean completed;
