@@ -11,19 +11,19 @@ import umc.spring2.web.dto.TripRecordResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("trip_records/")
+@RequestMapping("/trip_records")
 
 public class TripRecordController {
     private final TripRecordService tripRecordService;
 
-    @PostMapping("{trip_record_id}/")
+    @PostMapping("/")
     public ApiResponse<TripRecordResponseDTO> createTripRecord(
             @RequestBody TripRecordRequestDTO dto) {
         TripRecordResponseDTO response = tripRecordService.createTripRecord(dto);
         return ApiResponse.onSuccess(response);
     }
 
-    @GetMapping("{trip_record_id}/")
+    @GetMapping("/{trip_record_id}")
     public ApiResponse<TripRecordResponseDTO> getTripRecord(
             @PathVariable("trip_record_id") Long tripRecordId) {
         TripRecordResponseDTO response = tripRecordService.getTripRecordById(tripRecordId);
