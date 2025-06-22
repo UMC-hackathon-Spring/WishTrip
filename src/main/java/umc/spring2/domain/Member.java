@@ -24,13 +24,16 @@ public class Member extends BaseEntity {
     private Long id;
 
     @Column(nullable = false, unique = true, length = 255)
-    private String user_id;
+    private String memberId;
 
     @Column(nullable = false, length = 255)
-    private String user_pwd;
+    private String memberPassword;
 
     @Column(length = 20)
-    private String phone_num;
+    private String phone;
+
+    @Column(nullable = false, length = 255)
+    private String nickname;
 
     // 여행지(Trip)와의 연결 - 양방향 관계로 만들고 싶을 때 사용
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -38,4 +41,9 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TripRecord> tourRecords = new ArrayList<>();
+
+
+    public void encodePassword(String password) {
+        this.memberPassword= password;
+    }
 }
