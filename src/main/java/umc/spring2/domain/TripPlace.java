@@ -8,6 +8,7 @@ import umc.spring2.domain.common.BaseEntity;
 
 @Entity
 @Getter
+@Setter
 @DynamicInsert
 @DynamicUpdate
 @Builder
@@ -38,4 +39,5 @@ public class TripPlace extends BaseEntity {
 
     @OneToOne(mappedBy = "tripPlace", cascade = CascadeType.ALL, orphanRemoval = true)
     private TripRecord tripRecord;
+
 }

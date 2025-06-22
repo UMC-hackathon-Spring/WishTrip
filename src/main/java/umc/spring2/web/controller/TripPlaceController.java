@@ -1,6 +1,7 @@
 package umc.spring2.web.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,16 @@ public class TripPlaceController {
     public ApiResponse<List<TripPlaceResponseDTO.TripPlaceListDTO>> getTripPlaceList(@PathVariable Long memberId) {
         List<TripPlace> tripPlaces = tripPlaceQueryService.getTripPlacesWithRecord(memberId);
         return ApiResponse.onSuccess(TripPlaceConverter.toTripPlaceListDTOList(tripPlaces));
+    }
+
+    @PatchMapping("/{placeId}/complete")
+    @Operation(summary = "여행 완료 체크 API", description = "특정 사용자의 특정 여행지를 완료 상태로 체크합니다.")
+    public ApiResponse<String> completeTripPlace( @Parameter(description = "여행지 ID", required = true)
+                                                       @PathVariable Long placeId,
+                                                   @Parameter(description = "멤버 ID", required = true)
+                                                       @RequestParam Long memberId) {
+
+        tripPlaceQueryService.completeTripPlace(placeId, memberId);
+        return ApiResponse.onSuccess("완료 처리되었습니다.");
     }
 }

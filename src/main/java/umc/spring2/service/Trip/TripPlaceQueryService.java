@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TripPlaceQueryService {
     List<TripPlace> getTripPlacesWithRecord(Long memberId);
+
+    String completeTripPlace(Long placeId, Long memberId);
 }

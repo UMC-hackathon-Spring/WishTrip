@@ -1,11 +1,8 @@
-package umc.spring2.controller;
+package umc.spring2.web.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,15 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import umc.spring2.apiPayload.ApiResponse;
-import umc.spring2.config.security.CustomUserDetailsService;
 import umc.spring2.convert.MemberConverter;
 import umc.spring2.domain.Member;
-import umc.spring2.dto.MemberRequestDTO;
-import umc.spring2.dto.MemberResponseDTO;
+import umc.spring2.web.dto.MemberRequestDTO;
+import umc.spring2.web.dto.MemberResponseDTO;
 import umc.spring2.service.MemberService;
 import umc.spring2.service.ResetService;
-
-import java.util.Optional;
 
 @Validated
 @RestController

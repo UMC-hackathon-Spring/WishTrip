@@ -2,6 +2,7 @@ package umc.spring2.service.Trip;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import umc.spring2.apiPayload.code.status.ErrorStatus;
 import umc.spring2.apiPayload.exception.GeneralException;
 import umc.spring2.domain.TripPlace;
@@ -24,5 +25,19 @@ public class TripPlaceQueryServiceImpl implements TripPlaceQueryService {
         }
 
         return tripPlaceRepository.findAllWithTripRecordByMemberId(memberId);
+    }
+
+    @Override
+    @Transactional
+    public String completeTripPlace(Long placeId, Long memberId) {
+        TripPlace tripPlace = tripPlaceRepository.findById(placeId)
+                .orElseThrow(() -> new GeneralException(ErrorStatus.TRIP_PLACE_NOT_EXIST));
+
+        if (!tripPlace.getMember().getId().equals(memberId)) {
+            throw new RuntimeException("권한 없음");
+        }
+
+        tripPlace.setCompleted(true);
+        return "complete";
     }
 }

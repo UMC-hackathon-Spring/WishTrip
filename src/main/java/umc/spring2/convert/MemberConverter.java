@@ -1,8 +1,8 @@
 package umc.spring2.convert;
 
 import umc.spring2.domain.Member;
-import umc.spring2.dto.MemberResponseDTO;
-import umc.spring2.dto.MemberRequestDTO;
+import umc.spring2.web.dto.MemberResponseDTO;
+import umc.spring2.web.dto.MemberRequestDTO;
 
 import java.time.LocalDateTime;
 

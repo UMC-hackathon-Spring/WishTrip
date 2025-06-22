@@ -1,4 +1,4 @@
-package umc.spring2.dto;
+package umc.spring2.web.dto;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;

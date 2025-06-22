@@ -1,6 +1,5 @@
 package umc.spring2.service;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,8 +11,8 @@ import umc.spring2.apiPayload.exception.GeneralException;
 import umc.spring2.config.security.jwt.JwtTokenProvider;
 import umc.spring2.convert.MemberConverter;
 import umc.spring2.domain.Member;
-import umc.spring2.dto.MemberRequestDTO;
-import umc.spring2.dto.MemberResponseDTO;
+import umc.spring2.web.dto.MemberRequestDTO;
+import umc.spring2.web.dto.MemberResponseDTO;
 import umc.spring2.repository.MemberRepository;
 
 import java.util.Collections;
