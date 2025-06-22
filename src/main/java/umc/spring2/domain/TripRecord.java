@@ -31,11 +31,11 @@ public class TripRecord extends BaseEntity {
 
     // 여행지 연관관계
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id2")  // 여행지 id
+    @JoinColumn(name = "placeId")  // 여행지 id
     private TripPlace place;
 
     // 사용자 연관관계
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id2")  // 회원 id
-    private Member user;
+    @JoinColumn(name = "memberId")  // 회원 id
+    private Member member;
 }
