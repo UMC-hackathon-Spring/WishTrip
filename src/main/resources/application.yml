@@ -1,0 +1,5 @@
+jwt:
+  token:
+    secretKey: umcehackerthonjwttokenauthentication
+    expiration:
+      access: 14400000
