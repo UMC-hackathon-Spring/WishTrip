@@ -35,4 +35,7 @@ public class TripPlace extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String imageUrl;
+
+    @OneToOne(mappedBy = "tripPlace", cascade = CascadeType.ALL, orphanRemoval = true)
+    private TripRecord tripRecord;
 }
