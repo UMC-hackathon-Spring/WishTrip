@@ -51,7 +51,7 @@ public class MemberController {
         return ApiResponse.onSuccess(memberService.loginMember(request));
     }
 
-    @PostMapping("/{memberId}/reset")
+    @DeleteMapping("/{memberId}/reset")
     @Operation(summary = "위시트립 초기화", description = "위시트립을 초기화합니다.")
     public ApiResponse<MemberResponseDTO.ResetDTO> reset(@PathParam(value = "memberId") String memberId) {
         return ApiResponse.onSuccess(resetService.resetData(memberId));
