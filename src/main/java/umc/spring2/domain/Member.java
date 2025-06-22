@@ -41,4 +41,9 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TripRecord> tourRecords = new ArrayList<>();
+
+
+    public void encodePassword(String password) {
+        this.user_pwd = password;
+    }
 }

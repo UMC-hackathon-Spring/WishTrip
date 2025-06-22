@@ -6,6 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.spring2.apiPayload.code.status.ErrorStatus;
+import umc.spring2.apiPayload.exception.GeneralException;
 import umc.spring2.config.security.jwt.JwtTokenProvider;
 import umc.spring2.convert.MemberConverter;
 import umc.spring2.domain.Member;
@@ -27,11 +29,13 @@ public class MemberService {
     @Transactional
     public Member signupMember(MemberRequestDTO.JoinDto request){
         Member newMember = MemberConverter.toMember(request);
+        newMember.encodePassword(passwordEncoder.encode(request.getUser_pwd()));
+        return memberRepository.save(newMember);
     }
 
     @Transactional
     public MemberResponseDTO.LoginResultDTO loginMember(MemberRequestDTO.LoginRequestDTO request){
-        Member member = memberRepository.findByUser_id(request.getUser_id()).orElse(null);
+        Member member = memberRepository.findByUser_id(request.getUser_id()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 member.getUser_id(), null,
