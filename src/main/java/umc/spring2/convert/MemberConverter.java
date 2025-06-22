@@ -24,9 +24,9 @@ public class MemberConverter {
     }
     public static Member toMember(MemberRequestDTO.JoinDto request) {
         return Member.builder()
-                .user_id(request.getUser_id())
-                .user_pwd(request.getUser_pwd())
-                .phone_num(request.getPhone_num())
+                .memberId(request.getUser_id())
+                .memberPassword(request.getUser_pwd())
+                .phone(request.getPhone_num())
                 .nickname(request.getNickname())
                 .build();
     }

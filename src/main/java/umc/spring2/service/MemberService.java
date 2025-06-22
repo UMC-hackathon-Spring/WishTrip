@@ -35,10 +35,10 @@ public class MemberService {
 
     @Transactional
     public MemberResponseDTO.LoginResultDTO loginMember(MemberRequestDTO.LoginRequestDTO request){
-        Member member = memberRepository.findByUser_id(request.getUser_id()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
+        Member member = memberRepository.findByMemberId(request.getUser_id()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                member.getUser_id(), null,
+                member.getMemberId(), null,
                 Collections.singleton(() -> "USER")
         );
 
