@@ -22,7 +22,7 @@ public class TripPlace extends BaseEntity {
     // 회원 연관관계
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Member member;
+    private Member user;
 
     @Column(length = 255, nullable = false)
     private String country;
