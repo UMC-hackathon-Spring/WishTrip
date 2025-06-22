@@ -34,10 +34,6 @@ public class MemberService {
         return memberRepository.save(newMember);
     }
 
-    public Member getMemberById(Long id){
-        return memberRepository.findById(id).orElseThrow();
-    }
-
     @Transactional
     public MemberResponseDTO.LoginResultDTO loginMember(MemberRequestDTO.LoginRequestDTO request){
         Member member = memberRepository.findByLoginId(request.getLoginId()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
@@ -55,7 +51,7 @@ public class MemberService {
         );
     }
 
-    public Member getMemberById(Long memberId) {
-        return memberRepository.findById(memberId).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
+    public Member getMemberById(Long id) {
+        return memberRepository.findById(id).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
     }
 }
