@@ -13,7 +13,7 @@ public class TripRecordConverter {
     public TripRecord toEntity(TripRecordRequestDTO dto, Member member, TripPlace tripPlace) {
         return TripRecord.builder()
                 .member(member)
-                .place(tripPlace)
+                .tripPlace(tripPlace)
                 .startDate(dto.getStartDate())
                 .endDate(dto.getEndDate())
                 .content(dto.getContent())
@@ -22,8 +22,8 @@ public class TripRecordConverter {
 
     public TripRecordResponseDTO toResponseDTO(TripRecord entity) {
         return TripRecordResponseDTO.builder()
-                .id(entity.getTripRecordId())
-                .placeCity(entity.getPlace().getCity())      // 유저 이름
+                .id(entity.getId())
+                .placeCity(entity.getTripPlace().getCity())      // 유저 이름
                 .startDate(entity.getStartDate())
                 .endDate(entity.getEndDate())
                 .content(entity.getContent())
