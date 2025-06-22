@@ -27,12 +27,9 @@ public class TripRecordServiceImpl implements TripRecordService{
     private final TripRecordConverter tripRecordConverter;
 
     @Override
-    public List<TripPlace>
-
-    @Override
     @Transactional
     public TripRecordResponseDTO createTripRecord(TripRecordRequestDTO dto) {
-        Member member = memberRepository.findById(dto.getUserId())
+        Member member = memberRepository.findById(dto.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
 
         TripPlace place = tripPlaceRepository.findById(dto.getPlaceId())
@@ -45,8 +42,8 @@ public class TripRecordServiceImpl implements TripRecordService{
     }
 
     @Override
-    public List<TripRecordResponseDTO> getTripRecordsByUser(Long userId) {
-        List<TripRecord> records = tripRecordRepository.findByUserId(userId);
+    public List<TripRecordResponseDTO> getTripRecordsByMember(Long memberId) {
+        List<TripRecord> records = tripRecordRepository.findByMemberId(memberId);
         return records.stream()
                 .map(tripRecordConverter::toResponseDTO)
                 .collect(Collectors.toList());
