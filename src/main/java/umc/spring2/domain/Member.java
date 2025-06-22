@@ -36,7 +36,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 255)
     private String nickname;
 
-    @ColumnDefault("USER")
+    @Column
     private String role;
 
     // 여행지(Trip)와의 연결 - 양방향 관계로 만들고 싶을 때 사용
