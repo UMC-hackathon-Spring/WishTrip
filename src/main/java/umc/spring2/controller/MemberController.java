@@ -23,7 +23,6 @@ import umc.spring2.service.ResetService;
 @RequestMapping("/members")
 public class MemberController {
     private final MemberService memberService;
-
     private final ResetService resetService;
 
     @PostMapping("/signup")
