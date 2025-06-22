@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import umc.spring2.domain.Member;
 import umc.spring2.repository.MemberRepository;
 
+import javax.sql.RowSet;
+
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
