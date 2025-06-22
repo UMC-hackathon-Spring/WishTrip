@@ -21,7 +21,7 @@ public class TripPlace extends BaseEntity {
 
     // 회원 연관관계
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id", nullable = false)
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @Column(length = 255, nullable = false)
@@ -35,4 +35,7 @@ public class TripPlace extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String imageUrl;
+
+    @OneToOne(mappedBy = "tripPlace", cascade = CascadeType.ALL, orphanRemoval = true)
+    private TripRecord tripRecord;
 }
