@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class TripRecord extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tripRecordId;
@@ -29,13 +30,12 @@ public class TripRecord extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    // 여행지 연관관계
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id2")  // 여행지 id
-    private TripPlace place;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "place_id", nullable = false, unique = true)  // FK + unique
+    private TripPlace tripPlace;
 
     // 사용자 연관관계
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id2")  // 회원 id
-    private Member user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 }
