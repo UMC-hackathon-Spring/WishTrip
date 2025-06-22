@@ -7,5 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class MemberResponseDTO {
 
-    private String member_name;
+    @Getter
+    @AllArgsConstructor
+    public static class MyNameDTO {
+        private String my_name;
+    }
 }

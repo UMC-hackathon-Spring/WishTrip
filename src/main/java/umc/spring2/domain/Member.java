@@ -33,9 +33,9 @@ public class Member extends BaseEntity {
     private String phone_num;
 
     // 여행지(Trip)와의 연결 - 양방향 관계로 만들고 싶을 때 사용
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TripPlace> trips = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TripRecord> tourRecords = new ArrayList<>();
 }

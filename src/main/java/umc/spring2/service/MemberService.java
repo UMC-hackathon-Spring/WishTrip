@@ -1,7 +1,6 @@
 package umc.spring2.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import umc.spring2.domain.Member;
 import umc.spring2.repository.MemberRepository;
