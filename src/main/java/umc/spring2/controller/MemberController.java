@@ -1,10 +1,13 @@
 package umc.spring2.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,8 @@ import umc.spring2.dto.MemberResponseDTO;
 import umc.spring2.service.MemberService;
 import umc.spring2.service.ResetService;
 
+import java.util.Optional;
+
 @Validated
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +29,20 @@ import umc.spring2.service.ResetService;
 public class MemberController {
     private final MemberService memberService;
     private final ResetService resetService;
+
+    @GetMapping("/my_name")
+    @Operation(summary = "내 이름(사용자 ID) 조회 API", description = "현재 로그인한 사용자의 아이디 또는 이름을 조회합니다.")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료됨"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰이 이상함")
+    })
+    public ApiResponse<MemberResponseDTO.MyNameDTO> getMyName(@PathVariable(name = "memberId") @Valid Long memberId) {
+        Optional<Member> member = memberService.getMemberById(memberId); // 서비스로부터 Member 조회
+
+        return ApiResponse.onSuccess(MemberConverter.toMyNameDTO(member));
+    }
 
     @PostMapping("/signup")
     @Operation(summary = "유저 회원가입 API",description = "유저가 회원가입 API입니다.")
@@ -44,3 +63,4 @@ public class MemberController {
         return ApiResponse.onSuccess(resetService.resetData(memberId));
     }
 }
+

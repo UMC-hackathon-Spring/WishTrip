@@ -11,6 +11,13 @@ public class MemberResponseDTO {
 
     @Builder
     @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class MyNameDTO {
+        private String nickname;
+
+    @Builder
+    @Getter
     @NoArgsConstructor
     @AllArgsConstructor
     public static class LoginResultDTO {

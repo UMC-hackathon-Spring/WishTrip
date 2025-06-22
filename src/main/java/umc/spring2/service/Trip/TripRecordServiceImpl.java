@@ -14,6 +14,7 @@ import umc.spring2.web.dto.TripRecordResponseDTO;
 import umc.spring2.convert.TripRecordConverter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
