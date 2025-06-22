@@ -33,12 +33,16 @@ public class MemberService {
         return memberRepository.save(newMember);
     }
 
+    public Member getMemberById(Long id){
+        return memberRepository.findById(id).orElseThrow();
+    }
+
     @Transactional
     public MemberResponseDTO.LoginResultDTO loginMember(MemberRequestDTO.LoginRequestDTO request){
-        Member member = memberRepository.findByMemberId(request.getUser_id()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
+        Member member = memberRepository.findByLoginId(request.getLoginId()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                member.getMemberId(), null,
+                member.getLoginId(), null,
                 Collections.singleton(() -> "USER")
         );
 

@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +27,6 @@ import java.util.Optional;
 @RequestMapping("/members")
 public class MemberController {
     private final MemberService memberService;
-
     private final ResetService resetService;
 
     @GetMapping("/my_name")
@@ -40,7 +38,7 @@ public class MemberController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰이 이상함")
     })
     public ApiResponse<MemberResponseDTO.MyNameDTO> getMyName(@PathVariable(name = "memberId") @Valid Long memberId) {
-        Optional<Member> member = memberService.getMemberById(memberId); // 서비스로부터 Member 조회
+        Member member = memberService.getMemberById(memberId); // 서비스로부터 Member 조회
 
         return ApiResponse.onSuccess(MemberConverter.toMyNameDTO(member));
     }
