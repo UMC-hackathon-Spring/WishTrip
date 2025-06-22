@@ -38,7 +38,7 @@ public class MemberController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰이 이상함")
     })
     public ApiResponse<MemberResponseDTO.MyNameDTO> getMyName(@PathVariable(name = "memberId") @Valid Long memberId) {
-        Optional<Member> member = memberService.getMemberById(memberId); // 서비스로부터 Member 조회
+        Member member = memberService.getMemberById(memberId); // 서비스로부터 Member 조회
 
         return ApiResponse.onSuccess(MemberConverter.toMyNameDTO(member));
     }
