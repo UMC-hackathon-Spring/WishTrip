@@ -7,8 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring2.config.security.jwt.JwtTokenProvider;
+import umc.spring2.convert.MemberConverter;
 import umc.spring2.domain.Member;
 import umc.spring2.dto.MemberRequestDTO;
+import umc.spring2.dto.MemberResponseDTO;
 import umc.spring2.repository.MemberRepository;
 
 import java.util.Collections;
@@ -23,22 +25,17 @@ public class MemberService {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public Member signupMember(MemberRequestDTO request){
+    public Member signupMember(MemberRequestDTO.JoinDto request){
         Member newMember = MemberConverter.toMember(request);
     }
 
     @Transactional
-    public Member loginMember(MemberRequestDTO.JoinDto request){
-        Member member = memberRepository.findByIdealName(request.getEmail())
-                .orElseThrow(()-> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
-
-        if(!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
-            throw new MemberHandler(ErrorStatus.INVALID_PASSWORD);
-        }
+    public MemberResponseDTO.LoginResultDTO loginMember(MemberRequestDTO.LoginRequestDTO request){
+        Member member = memberRepository.findByUser_id(request.getUser_id()).orElse(null);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                member.getEmail(), null,
-                Collections.singleton(() -> member.getRole().name())
+                member.getUser_id(), null,
+                Collections.singleton(() -> "USER")
         );
 
         String accessToken = jwtTokenProvider.generateToken(authentication);

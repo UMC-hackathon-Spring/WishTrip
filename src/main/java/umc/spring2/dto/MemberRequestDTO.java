@@ -20,28 +20,25 @@ public class MemberRequestDTO {
     @Schema(name = "MemberJoinDto", description = "회원가입 DTO")
     public static class JoinDto{
         @NotBlank
-        String idealName;
+        String user_id;
 
         @NotBlank
-        String password;
+        String user_pwd;
 
         @NotNull
-        String phone;
+        String phone_num;
 
         @NotNull
         String nickname;
-
-        @NotNull
-        Role role;
     }
 
     @Getter
     @Setter
     public static class LoginRequestDTO{
         @NotBlank(message = "ID는 필수입니다.")
-        private String idealName;
+        private String user_id;
 
         @NotBlank(message = "패스워드는 필수입니다.")
-        private String password;
+        private String user_pwd;
     }
 }

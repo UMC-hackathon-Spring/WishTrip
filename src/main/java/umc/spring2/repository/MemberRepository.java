@@ -6,5 +6,6 @@ import umc.spring2.domain.Member;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findByIdealName(String email);
+    Optional<Member> findByUser_id(String email);
+
 }
