@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,21 +36,22 @@ public class MemberController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료됨"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰이 이상함")
     })
-    public ApiResponse<MemberResponseDTO.MyNameDTO> getMyName(@PathVariable(name = "memberId") @Valid Long memberId) {
-        Optional<Member> member = memberService.getMemberById(memberId); // 서비스로부터 Member 조회
+    public ApiResponse<MemberResponseDTO.MyNameDTO> getMyName(@AuthenticationPrincipal UserDetails userDetails) {
+        Long memberId = userDetails.getId(); // 서비스로부터 Member 조회
+        Member member = memberService.getMemberById(memberId);
 
         return ApiResponse.onSuccess(MemberConverter.toMyNameDTO(member));
     }
 
     @PostMapping("/signup")
-    @Operation(summary = "유저 회원가입 API",description = "유저가 회원가입 API")
-    public ApiResponse<MemberResponseDTO.JoinResultDTO> signup(@RequestBody @Valid MemberRequestDTO.JoinDto request){
+    @Operation(summary = "유저 회원가입 API", description = "유저가 회원가입 API")
+    public ApiResponse<MemberResponseDTO.JoinResultDTO> signup(@RequestBody @Valid MemberRequestDTO.JoinDto request) {
         Member member = memberService.signupMember(request);
         return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
     }
 
     @PostMapping("/login")
-    @Operation(summary = "유저 로그인 API",description = "유저가 로그인 API")
+    @Operation(summary = "유저 로그인 API", description = "유저가 로그인 API")
     public ApiResponse<MemberResponseDTO.LoginResultDTO> login(@RequestBody @Valid MemberRequestDTO.LoginRequestDTO request) {
         return ApiResponse.onSuccess(memberService.loginMember(request));
     }

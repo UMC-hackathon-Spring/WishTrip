@@ -11,8 +11,11 @@ import java.util.ArrayList;
 
 public class MemberConverter {
 
-    public static MemberResponseDTO.MyNameDTO toMyNameDTO(Optional<Member> member) {
-        return new MemberResponseDTO.MyNameDTO(member.getNickname());
+    public static MemberResponseDTO.MyNameDTO toMyNameDTO(Member member) {
+        return MemberResponseDTO.MyNameDTO.builder()
+                .nickname(member.getNickname())
+                .build();
+    }
 
     public static MemberResponseDTO.JoinResultDTO toJoinResultDTO(Member member) {
         return MemberResponseDTO.JoinResultDTO.builder()
