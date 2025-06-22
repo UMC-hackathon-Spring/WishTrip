@@ -16,7 +16,6 @@ public class MemberResponseDTO {
     public static class MyNameDTO {
         private String nickname;
     }
-
     @Builder
     @Getter
     @NoArgsConstructor
