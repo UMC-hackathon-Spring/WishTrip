@@ -9,10 +9,12 @@ import java.time.LocalDateTime;
 
 public class MemberResponseDTO {
 
+    @Builder
     @Getter
     @AllArgsConstructor
+    @NoArgsConstructor
     public static class MyNameDTO {
-        private String my_name;
+        private String nickname;
 
     @Builder
     @Getter
