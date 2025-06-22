@@ -15,7 +15,7 @@ public class MemberResponseDTO {
     @NoArgsConstructor
     public static class MyNameDTO {
         private String nickname;
-
+    }
     @Builder
     @Getter
     @NoArgsConstructor

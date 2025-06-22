@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class MemberConverter {
 
-    public static MemberResponseDTO.MyNameDTO toMyNameDTO(Optional<Member> member) {
+    public static MemberResponseDTO.MyNameDTO toMyNameDTO(Member member) {
         return new MemberResponseDTO.MyNameDTO(member.getNickname());
-
+    }
     public static MemberResponseDTO.JoinResultDTO toJoinResultDTO(Member member) {
         return MemberResponseDTO.JoinResultDTO.builder()
                 .memberId(member.getId())
@@ -27,6 +27,7 @@ public class MemberConverter {
                 .accessToken(accessToken)
                 .build();
     }
+
     public static Member toMember(MemberRequestDTO.JoinDto request) {
         return Member.builder()
                 .memberId(request.getUser_id())

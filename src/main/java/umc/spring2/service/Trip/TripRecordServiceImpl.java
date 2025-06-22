@@ -32,7 +32,7 @@ public class TripRecordServiceImpl implements TripRecordService{
     @Override
     @Transactional
     public TripRecordResponseDTO createTripRecord(TripRecordRequestDTO dto) {
-        Member member = memberRepository.findById(dto.getUserId())
+        Member member = memberRepository.findById(dto.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
 
         TripPlace place = tripPlaceRepository.findById(dto.getPlaceId())

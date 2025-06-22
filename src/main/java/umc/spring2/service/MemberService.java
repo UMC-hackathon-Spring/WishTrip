@@ -38,7 +38,7 @@ public class MemberService {
         Member member = memberRepository.findByMemberId(request.getUser_id()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                member.getMemberId(), null,
+                member.getLoginId(), null,
                 Collections.singleton(() -> "USER")
         );
 
