@@ -16,6 +16,7 @@ public class MemberResponseDTO {
     public static class MyNameDTO {
         private String nickname;
     }
+
     @Builder
     @Getter
     @NoArgsConstructor
@@ -39,6 +40,6 @@ public class MemberResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ResetDTO {
-        String memberId;
+        Long memberId;
     }
 }

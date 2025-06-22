@@ -53,7 +53,7 @@ public class MemberController {
 
     @DeleteMapping("/{memberId}/reset")
     @Operation(summary = "위시트립 초기화", description = "위시트립을 초기화합니다.")
-    public ApiResponse<MemberResponseDTO.ResetDTO> reset(@PathParam(value = "memberId") String memberId) {
+    public ApiResponse<MemberResponseDTO.ResetDTO> reset(@PathVariable(value = "memberId") Long memberId) {
         return ApiResponse.onSuccess(resetService.resetData(memberId));
     }
 }
