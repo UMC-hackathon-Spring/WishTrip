@@ -7,6 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import umc.spring2.apiPayload.ApiResponse;
 import umc.spring2.convert.MemberConverter;
 import umc.spring2.domain.Member;
@@ -37,4 +41,18 @@ public class MemberController {
         return ApiResponse.onSuccess(MemberConverter.toMyNameDTO(member));
     }
 
+    @PostMapping("/signup")
+    @Operation(summary = "유저 회원가입 API",description = "유저가 회원가입 API")
+    public ApiResponse<MemberResponseDTO.JoinResultDTO> signup(@RequestBody @Valid MemberRequestDTO.JoinDto request){
+        Member member = memberService.signupMember(request);
+        return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
+    }
+
+    @PostMapping("/login")
+    @Operation(summary = "유저 로그인 API",description = "유저가 로그인 API")
+    public ApiResponse<MemberResponseDTO.LoginResultDTO> login(@RequestBody @Valid MemberRequestDTO.LoginRequestDTO request) {
+        return ApiResponse.onSuccess(memberService.loginMember(request));
+    }
+
 }
+
