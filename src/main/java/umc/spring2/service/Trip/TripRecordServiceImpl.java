@@ -19,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class TripRecordServiceImpl implements TripRecordService{
+
     private final TripRecordRepository tripRecordRepository;
     private final TripPlaceRepository tripPlaceRepository;
     private final MemberRepository memberRepository;
