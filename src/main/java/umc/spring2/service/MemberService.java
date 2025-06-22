@@ -1,5 +1,6 @@
 package umc.spring2.service;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,10 +34,6 @@ public class MemberService {
         return memberRepository.save(newMember);
     }
 
-    public Member getMemberById(Long id){
-        return memberRepository.findById(id).orElseThrow();
-    }
-
     @Transactional
     public MemberResponseDTO.LoginResultDTO loginMember(MemberRequestDTO.LoginRequestDTO request){
         Member member = memberRepository.findByLoginId(request.getLoginId()).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
@@ -52,5 +49,9 @@ public class MemberService {
                 member.getId(),
                 accessToken
         );
+    }
+
+    public Member getMemberById(Long id) {
+        return memberRepository.findById(id).orElseThrow(()-> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
     }
 }

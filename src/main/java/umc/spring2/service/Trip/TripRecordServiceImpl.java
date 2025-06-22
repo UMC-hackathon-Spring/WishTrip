@@ -42,10 +42,9 @@ public class TripRecordServiceImpl implements TripRecordService{
     }
 
     @Override
-    public List<TripRecordResponseDTO> getTripRecordsByMember(Long memberId) {
-        List<TripRecord> records = tripRecordRepository.findByMemberId(memberId);
-        return records.stream()
-                .map(tripRecordConverter::toResponseDTO)
-                .collect(Collectors.toList());
+    public TripRecordResponseDTO getTripRecordById(Long tripRecordId) {
+        TripRecord record = tripRecordRepository.findById(tripRecordId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 여행 기록이 존재하지 않습니다."));
+        return tripRecordConverter.toResponseDTO(record);
     }
 }

@@ -22,7 +22,7 @@ public class TripRecordConverter {
 
     public TripRecordResponseDTO toResponseDTO(TripRecord entity) {
         return TripRecordResponseDTO.builder()
-                .id(entity.getTripRecordId())
+                .id(entity.getId())
                 .placeCity(entity.getTripPlace().getCity())      // 유저 이름
                 .startDate(entity.getStartDate())
                 .endDate(entity.getEndDate())

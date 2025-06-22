@@ -19,7 +19,7 @@ public class TripRecord extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tripRecordId;
+    private Long id;
 
     @Column(nullable = false)
     private LocalDate startDate;
