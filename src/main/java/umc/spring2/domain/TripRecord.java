@@ -31,7 +31,7 @@ public class TripRecord extends BaseEntity {
     private String content;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id", nullable = false, unique = true)  // FK + unique
+    @JoinColumn(name = "place_id", unique = true)  // FK + unique
     private TripPlace tripPlace;
 
     // 사용자 연관관계
