@@ -1,9 +1,11 @@
 package umc.spring2.web.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter @Setter
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TripPlaceResponseDTO {
     private Long id;
     private String country;
